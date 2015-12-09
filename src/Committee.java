@@ -13,12 +13,10 @@ public class Committee {
 		winner = findWinner();
 		if(winner==1){
 			winnerMode= black.getMode();
-			if(winnerScore.equals(""))
-				winnerScore = black.getTopScore();
+			if(winnerScore.equals("")) winnerScore = black.getTopScore();
 		}else if(winner==2||winner==3){
 			winnerMode= white.getMode();
-			if(winnerScore.equals(""))
-				winnerScore = white.getTopScore();
+			if(winnerScore.equals("")) winnerScore = white.getTopScore();
 		}
 	}
 	
@@ -31,12 +29,13 @@ public class Committee {
 			for(int i=maxCard-1;i>=0;i--){
 				Vector<Rank> blackcards = black.getCards().get(i);
 				Vector<Rank> whitecards = white.getCards().get(i);
+				
 				for(int j=0;j<blackcards.size();j++){
 					int blackscore = blackcards.get(j).ordinal();
 					int whitescore = whitecards.get(j).ordinal();
+					
 					if(blackscore>whitescore) {
 						winnerScore=blackcards.get(j).toString();
-						
 						return 1;
 					}
 					else if(blackscore<whitescore){
@@ -45,7 +44,6 @@ public class Committee {
 					}
 				}
 			}
-			
 			return 3;
 		}else if(blackMode.ordinal()>whiteMode.ordinal()){
 			return 1;
@@ -59,7 +57,6 @@ public class Committee {
 	public String getWinnerScore(){
 		return winnerScore;
 	}
-	
 	
 	public int getWinner(){
 		return winner;
